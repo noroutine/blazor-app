@@ -1,0 +1,17 @@
+on: push
+
+defaults:
+  run:
+    shell: bash -l -ET -eo pipefail {0}
+
+jobs:
+  deploy-using-azure-pipelines:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: 'Trigger an Azure Pipeline to deploy the app to PRODUCTION'
+      uses: Azure/pipelines@releases/v1
+      with:
+        azure-devops-project-url: 'https://dev.azure.com/noroutine-com/azure-devops-poc'
+        azure-pipeline-name: 'azure-devops-poc'
+        azure-devops-token: '${{ secrets.AZURE_DEVOPS_IAC_TOKEN }}'
