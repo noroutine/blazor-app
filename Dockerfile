@@ -12,4 +12,5 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /BlazorApp
 COPY --from=build-env /BlazorApp/out .
-ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "./BlazorApp.dll"]
